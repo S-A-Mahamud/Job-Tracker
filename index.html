@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- Tailwind css cdn -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        body.geist-font {
+            font-family: "Geist", sans-serif;
+        }
+    </style>
+</head>
+
+<body class="max-w-sm md:max-w-3xl lg:max-w-6xl mx-auto geist-font">
+    <header class="bg-gray-100 p-4">
+        <h1 class="text-2xl md:text-3xl lg:text-4xl">Job Application Tracker</h1>
+        <div class="grid grid-cols-3 gap-4 mt-8">
+            <div class="border px-4 py-2">
+                <p>Total</p>
+                <p class="text-3xl">0</p>
+            </div>
+            <div class="border px-4 py-2">
+                <p>Interview</p>
+                <p class="text-green-600 text-3xl">0</p>
+            </div>
+            <div class="border px-4 py-2">
+                <p>Rejected</p>
+                <p class="text-red-600 text-3xl">0</p>
+            </div>
+        </div>
+    </header>
+
+    <script src="/script.js"></script>
+</body>
+
+</html>
