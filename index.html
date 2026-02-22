@@ -19,10 +19,11 @@
     </style>
 </head>
 
-<body class="max-w-sm md:max-w-3xl lg:max-w-6xl mx-auto geist-font">
-    <header class="bg-gray-100 p-4">
-        <h1 class="text-2xl md:text-3xl lg:text-4xl">Job Application Tracker</h1>
-        <div class="grid grid-cols-3 gap-4 mt-8">
+<body class="max-w-sm md:max-w-3xl lg:max-w-6xl mx-auto geist-font bg-gray-200">
+    <header class=" p-4 ">
+        <!-- Add statistics section -->
+        <h1 class="text-2xl md:text-3xl lg:text-4xl stricky">Job Application Tracker</h1>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
             <div class="border px-4 py-2">
                 <p>Total</p>
                 <p class="text-3xl">0</p>
@@ -38,6 +39,21 @@
         </div>
     </header>
 
+    <main class="px-4">
+        <!-- Add filter buttons section -->
+        <section class="mt-8">
+            <div class="flex items-center justify-between">
+                <h3 class="text-3xl mb-2">Available Jobs</h3>
+                <p><span>0</span> jobs</p>
+            </div>
+            <div class="flex items-center gap-4">
+                <button class="bg-blue-500 text-white font-bold py-2 px-4 rounded cursor-pointer">All</button>
+                <button class="bg-gray-500 text-white font-bold py-2 px-4 rounded cursor-pointer">Interview</button>
+                <button class="bg-gray-500 text-white font-bold py-2 px-4 rounded cursor-pointer">Rejected </button>
+            </div>
+            
+        </section>
+    </main>
     <script src="/script.js"></script>
 </body>
 
