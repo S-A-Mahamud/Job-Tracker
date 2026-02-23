@@ -47,9 +47,9 @@
                 <p><span class="jobCount font-bold">0</span> jobs</p>
             </div>
             <div class="flex items-center gap-4">
-                <button class="bg-blue-500 text-white font-bold py-2 px-4 rounded cursor-pointer">All</button>
-                <button class="bg-gray-500 text-white font-bold py-2 px-4 rounded cursor-pointer">Interview</button>
-                <button class="bg-gray-500 text-white font-bold py-2 px-4 rounded cursor-pointer">Rejected </button>
+                <button onclick="toggleActiveButton(this)" id="all-filter-btn" class="bg-blue-500 text-white font-bold py-2 px-4 rounded cursor-pointer">All</button>
+                <button onclick="toggleActiveButton(this)" id="interview-filter-btn" class="bg-gray-500 text-white font-bold py-2 px-4 rounded cursor-pointer">Interview</button>
+                <button onclick="toggleActiveButton(this)" id="rejected-filter-btn" class="bg-gray-500 text-white font-bold py-2 px-4 rounded cursor-pointer">Rejected </button>
             </div>
         </section>
 
@@ -148,7 +148,7 @@
             </div>
         </section>
     </main>
-    <script src="/script.js"></script>
+    <script src="./script.js"></script>
 </body>
 
 </html>
