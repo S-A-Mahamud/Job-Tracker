@@ -88,7 +88,7 @@ function toggleActiveButton(activeButton) {
 mainContainer.addEventListener("click", function (event) {
     // Check if the clicked element is an interview or reject button
     if (event.target.classList.contains("interview-btn")) {
-        const card = event.target.parentNode.parentNode;
+        const card = event.target.closest(".job-card");
         const companyName = card.querySelector(".company-name").textContent;
         const designation = card.querySelector(".designation").textContent;
         const salary = card.querySelector(".salary").textContent;
@@ -96,6 +96,15 @@ mainContainer.addEventListener("click", function (event) {
         const details = card.querySelector(".details").textContent;
 
         card.querySelector(".status").textContent = "INTERVIEW";
+
+        // after updating filtered card
+        const originalCard = Array.from(allCardsContainer.children).find(c =>
+            c.querySelector(".company-name").textContent === companyName &&
+            c.querySelector(".designation").textContent === designation
+        );
+        if (originalCard) {
+            originalCard.querySelector(".status").textContent = "INTERVIEW";
+        }
 
         const cardInfo = {
             companyName,
@@ -107,10 +116,6 @@ mainContainer.addEventListener("click", function (event) {
         const interviewExists = interviewList.find(card => card.companyName === companyName && card.designation === designation);
         if (!interviewExists) {
             interviewList.push(cardInfo);
-            const rejectedIndex = rejectedList.findIndex(card => card.companyName === companyName && card.designation === designation);
-            if (rejectedIndex !== -1) {
-                rejectedList.splice(rejectedIndex, 1);
-            }
         }
 
         //remove from rejected list if exists
@@ -130,6 +135,15 @@ mainContainer.addEventListener("click", function (event) {
 
         card.querySelector(".status").textContent = "REJECTED";
 
+        // after updating filtered card
+        const originalCard = Array.from(allCardsContainer.children).find(c =>
+            c.querySelector(".company-name").textContent === companyName &&
+            c.querySelector(".designation").textContent === designation
+        );
+        if (originalCard) {
+            originalCard.querySelector(".status").textContent = "REJECTED";
+        }
+
         const cardInfo = {
             companyName,
             designation,
@@ -148,6 +162,44 @@ mainContainer.addEventListener("click", function (event) {
             createInterviewJobCard();;
         }
         updateJobCounters();
+    } else if (event.target.classList.contains("delete-btn")) {
+
+        const card = event.target.closest(".job-card");
+        const companyName = card.querySelector(".company-name").textContent;
+        const designation = card.querySelector(".designation").textContent;
+
+        // Remove from main DOM (if exists there)
+        for (const mainCard of allCardsContainer.children) {
+            const mainName = mainCard.querySelector(".company-name").textContent;
+            const mainDesignation = mainCard.querySelector(".designation").textContent;
+
+            if (mainName === companyName && mainDesignation === designation) {
+                mainCard.remove();
+                break;
+            }
+        }
+
+        // Remove from interviewList
+        interviewList = interviewList.filter(c =>
+            !(c.companyName === companyName && c.designation === designation)
+        );
+
+        // Remove from rejectedList
+        rejectedList = rejectedList.filter(c =>
+            !(c.companyName === companyName && c.designation === designation)
+        );
+
+        // Refresh filtered section if needed
+        if (currentFilter === "interview") {
+            createInterviewJobCard();
+        }
+
+        if (currentFilter === "rejected") {
+            createRejectedJobCard();
+        }
+
+        // Update counters
+        updateJobCounters();
     }
 }
 );
@@ -155,6 +207,16 @@ mainContainer.addEventListener("click", function (event) {
 // Function to create job cards based on the interviewList
 function createInterviewJobCard() {
     filteredJobsSection.innerHTML = ""; // Clear previous cards
+
+    if (interviewList.length === 0) {
+        filteredJobsSection.innerHTML = `
+        <div class="text-center mt-18 border bg-white p-6 rounded-lg">
+            <img src="./jobs.png" alt="No Rejected Jobs" class="mx-auto w-24 opacity-50">
+        <h2 class="text-center mt-4">No jobs available</h2>
+        <p class="text-center mt-2 text-gray-500">Check back soon for new job opportunities</p>
+        </div> `;
+        return;
+    }
 
     for (const interview of interviewList) {
 
@@ -188,6 +250,17 @@ function createInterviewJobCard() {
 // Function to create job cards based on the rejectedList
 function createRejectedJobCard() {
     filteredJobsSection.innerHTML = ""; // Clear previous cards
+
+    if (rejectedList.length === 0) {
+        filteredJobsSection.innerHTML = `
+        <div class="text-center mt-18 border bg-white p-6 rounded-lg">
+            <img src="./jobs.png" alt="No Rejected Jobs" class="mx-auto w-24 opacity-50">
+        <h2 class="text-center mt-4">No jobs available</h2>
+        <p class="text-center mt-2 text-gray-500">Check back soon for new job opportunities</p>
+        </div>
+        `;
+        return;
+    }
 
     for (const rejected of rejectedList) {
 
