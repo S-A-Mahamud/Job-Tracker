@@ -1,7 +1,11 @@
+// Arrays to store jobs marked as 'interview' or 'rejected'
 let interviewList = [];
 let rejectedList = [];
+
+// Current filter status: 'all', 'interview', 'rejected'
 let currentFilter = "all";
 
+// DOM elements
 const totalJobsElement = document.querySelectorAll(".jobCount");
 const selectedJobCountElement = document.getElementById("selectedJobCount");
 const selectedJobText = document.getElementById("selectedJobText");
@@ -20,15 +24,16 @@ const filteredJobsSection = document.getElementById("filteredJobsSection");
 function updateJobCounters() {
     const totalJobs = allCardsContainer.children.length;
 
-    // Header total count
+    // Update total jobs count in header
     totalJobsElement.forEach(element => {
         element.textContent = totalJobs;
     });
 
+    // Update counts for interview and rejected jobs
     interviewJobsElement.textContent = interviewList.length;
     rejectedJobsElement.textContent = rejectedList.length;
 
-    // Selected job text update
+    // Update selected jobs text based on current filter
     if (currentFilter === "all") {
         selectedJobText.innerHTML =
             `<span class="font-bold">${totalJobs}</span> jobs`;
@@ -46,10 +51,10 @@ function updateJobCounters() {
 updateJobCounters();
 
 
-//Active button toggle functionality and show/hide sections based on active button
 function toggleActiveButton(activeButton) {
     const filterButtons = [allFilterBtn, interviewFilterBtn, rejectedFilterBtn];
 
+    // Remove active class from all buttons & add default class
     filterButtons.forEach(button => {
         // all active class remove
         button.classList.remove("bg-blue-500");
@@ -58,11 +63,11 @@ function toggleActiveButton(activeButton) {
         button.classList.add("bg-gray-500");
     });
 
-    // add class for active button
+     // Add active class to clicked button
     activeButton.classList.remove("bg-gray-500");
     activeButton.classList.add("bg-blue-500", "hover:bg-blue-600");
 
-    // Show/hide sections based on active button
+    // Show/hide job sections based on active filter
     if (activeButton.id == 'interview-filter-btn') {
         allCardsContainer.classList.add('hidden');
         filteredJobsSection.classList.remove('hidden');
@@ -83,10 +88,10 @@ function toggleActiveButton(activeButton) {
     }
 }
 
-// Event listener for main section to handle interview and reject button clicks
+
 mainContainer.addEventListener("click", function (event) {
 
-    // Check if the clicked element is an interview or reject button
+    // Check if clicked element is interview or reject button
     if (event.target.classList.contains("interview-btn")) {
         const card = event.target.closest(".job-card");
         const companyName = card.querySelector(".company-name").textContent;
@@ -219,11 +224,10 @@ mainContainer.addEventListener("click", function (event) {
 );
 
 
-
-// Function to create job cards based on the interviewList
 function createInterviewJobCard() {
     filteredJobsSection.innerHTML = ""; // Clear previous cards
 
+    // Show message if no interview jobs available
     if (interviewList.length === 0) {
         filteredJobsSection.innerHTML = `
         <div class="text-center mt-18 border border-green-600 bg-white p-6 rounded-lg">
@@ -316,10 +320,10 @@ function createInterviewJobCard() {
 
 }
 
-// Function to create job cards based on the rejectedList
 function createRejectedJobCard() {
     filteredJobsSection.innerHTML = ""; // Clear previous cards
 
+    // Show message if no rejected jobs available
     if (rejectedList.length === 0) {
         filteredJobsSection.innerHTML = `
         <div class="text-center mt-18 border border-red-600 bg-white p-6 rounded-lg">
