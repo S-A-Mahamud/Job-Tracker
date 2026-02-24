@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Job Track</title>
     <!-- Google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,6 +12,12 @@
 
     <!-- Tailwind css cdn -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Fontawesome cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <style>
         body.geist-font {
             font-family: "Geist", sans-serif;
@@ -22,17 +28,18 @@
 <body class="max-w-sm md:max-w-3xl lg:max-w-6xl mx-auto geist-font bg-gray-200">
     <header class="p-4">
         <!-- statistics section -->
-        <h1 class="text-2xl md:text-3xl lg:text-4xl">Job Application Tracker</h1>
+        <h1 class="text-2xl md:text-3xl lg:text-4xl">J<span class="text-green-600">o</span><span
+                class="text-red-600">b</span> Application Tracker</h1>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8 mx-4">
             <div class="border bg-white px-4 py-2 rounded-lg">
                 <p>Total</p>
                 <p class="jobCount text-3xl">0</p>
             </div>
-            <div class="border bg-white px-4 py-2 rounded-lg">
+            <div class="border border-green-600 bg-white px-4 py-2 rounded-lg">
                 <p>Interview</p>
                 <p id="interviewJobs" class="text-green-600 text-3xl">0</p>
             </div>
-            <div class="border bg-white px-4 py-2 rounded-lg">
+            <div class="border border-red-600 bg-white px-4 py-2 rounded-lg">
                 <p>Rejected</p>
                 <p id="rejectedJobs" class="text-red-600 text-3xl">0</p>
             </div>
@@ -48,66 +55,209 @@
             </div>
             <div class="flex items-center gap-4">
                 <button onclick="toggleActiveButton(this)" id="all-filter-btn"
-                    class="bg-blue-500 text-white font-bold py-2 px-4 rounded cursor-pointer">All</button>
+                    class="bg-blue-500 text-white font-bold py-2 px-4 rounded cursor-pointer hover:bg-blue-500">All</button>
                 <button onclick="toggleActiveButton(this)" id="interview-filter-btn"
-                    class="bg-gray-500 text-white font-bold py-2 px-4 rounded cursor-pointer">Interview</button>
+                    class="bg-gray-500 text-white font-bold py-2 px-4 rounded cursor-pointer hover:bg-blue-500">Interview</button>
                 <button onclick="toggleActiveButton(this)" id="rejected-filter-btn"
-                    class="bg-gray-500 text-white font-bold py-2 px-4 rounded cursor-pointer">Rejected </button>
+                    class="bg-gray-500 text-white font-bold py-2 px-4 rounded cursor-pointer hover:bg-blue-500">Rejected
+                </button>
             </div>
         </section>
 
         <!-- static job cards section -->
-        <section class=" mb-8">
+        <section class="mb-8">
             <div id="allCardsContainer">
+
                 <!-- 1st card -->
-                <div class="job-card flex flex-col md:flex-row justify-between border p-4 bg-white rounded-lg mt-4">
+                <div class="job-card  border p-4 bg-white rounded-lg mt-4 hover:shadow-2xl 
+                hover:scale-[1.02] 
+                transition-all 
+                duration-300">
                     <div class="space-y-4">
-                        <h3 class="company-name text-2xl font-semibold">Mobile First Corp</h3>
+                        <div class="flex items-center justify-between gap-4">
+                            <h3 class="company-name text-2xl font-semibold">Mobile First Corp</h3>
+
+                            <div class="relative group inline-block">
+                                <button
+                                    class="delete-btn bg-gray-200 text-red-500 font-bold p-2 cursor-pointer mt-0 rounded-lg">
+                                    <i class="delete-btn fa-solid fa-trash 
+                                    transform 
+                                    hover:scale-150 
+                                    transition-transform 
+                                    duration-300 
+                                    ease-in-out"></i>
+                                </button>
+
+
+                                <span class="absolute top-0.5 right-2.5 -translate-x-1/2 
+                              bg-gray-200 text-red-600 font-bold text-xs
+                                px-2 py-2 rounded-xl
+                                opacity-0 group-hover:opacity-100
+                                transition-all duration-300
+                                whitespace-nowrap">
+
+                                    Delete Job
+
+                                    <!-- Tooltip Arrow -->
+                                    <span class="absolute left-full top-1/2 -translate-y-1/2 -translate-x-1/2
+                                    w-2.5 h-2.5 bg-gray-200
+                                    rotate-45"></span>
+
+                                </span>
+                            </div>
+
+                        </div>
+
                         <p class="designation font-light">React Native Developer</p>
                         <p class="salary font-light">Remote • Full-time • $130,000 - $175,000</p>
-                        <button class="status bg-gray-100 p-2 font-bold">Not Applied</button>
+                        <button class="status bg-gray-200 p-2 font-bold">Not Applied</button>
                         <p class="details font-medium">Build cross-platform mobile applications using React Native. Work
                             on products
                             used by millions of users worldwide.</p>
                         <div class="flex gap-2 mt-2">
-                            <button
-                                class="interview-btn text-green-600 border border-green-600 text-lg py-2 px-2 rounded cursor-pointer">INTERVIEW</button>
-                            <button
-                                class="reject-btn text-red-600 border border-red-600 text-lg py-2 px-2 rounded cursor-pointer">REJECTED</button>
+                            <button class="interview-btn  text-lg py-2 px-2 rounded cursor-pointer 
+                            relative overflow-hidden  
+                            border border-green-500 text-green-600 font-semibold
+                            transition duration-300 
+                            before:absolute before:inset-0
+                          before:bg-green-100
+                            before:origin-left
+                            before:scale-x-0
+                            before:transition-transform
+                            before:duration-300
+                            hover:before:scale-x-100
+                            before:-z-10">INTERVIEW</button>
+                            <button class="reject-btn text-lg py-2 px-2 rounded cursor-pointer 
+                            relative overflow-hidden  
+                            border border-red-500 text-red-600 font-semibold
+                            transition duration-300 
+                            before:absolute before:inset-0
+                          before:bg-red-100
+                            before:origin-right
+                            before:scale-x-0
+                            before:transition-transform
+                            before:duration-300
+                            hover:before:scale-x-100
+                            before:-z-10
+                                ">REJECTED</button>
                         </div>
-                    </div>
-                    <div>
-                        <button
-                            class="delete-btn bg-red-500 text-white font-bold py-2 px-4 rounded cursor-pointer mt-4 md:mt-0">Delete</button>
                     </div>
                 </div>
 
                 <!-- 2nd card -->
-                <div class="job-card flex flex-col md:flex-row justify-between border p-4 bg-white rounded-lg mt-4">
+                <div class="job-card border p-4 bg-white rounded-lg mt-4 hover:shadow-2xl 
+                hover:scale-[1.02]
+                transition-all 
+                duration-300">
                     <div class="space-y-4">
-                        <h3 class="company-name text-2xl font-semibold">WebFlow Agency</h3>
+                        <div class="flex items-center justify-between gap-4">
+                            <h3 class="company-name text-2xl font-semibold">WebFlow Agency</h3>
+
+                            <div class="relative group inline-block">
+                                <button
+                                    class="delete-btn bg-gray-200 text-red-500 font-bold p-2 cursor-pointer mt-0 rounded-lg">
+                                    <i class="delete-btn fa-solid fa-trash 
+                                    transform 
+                                    hover:scale-150 
+                                    transition-transform 
+                                    duration-300 
+                                    ease-in-out"></i>
+                                </button>
+
+
+                                <span class="absolute top-0.5 right-2.5 -translate-x-1/2 
+                              bg-gray-200 text-red-600 font-bold text-xs
+                                px-2 py-2 rounded-xl
+                                opacity-0 group-hover:opacity-100
+                                transition-all duration-300
+                                whitespace-nowrap">
+
+                                    Delete Job
+
+                                    <!-- Tooltip Arrow -->
+                                    <span class="absolute left-full top-1/2 -translate-y-1/2 -translate-x-1/2
+                                    w-2.5 h-2.5 bg-gray-200
+                                    rotate-45"></span>
+
+                                </span>
+                            </div>
+
+                        </div>
+
                         <p class="designation font-light">Web Designer & Developer</p>
                         <p class="salary font-light">Los Angeles, CA • Part-time • $80,000 - $120,000</p>
                         <button class="status bg-gray-100 p-2 font-bold">Not Applied</button>
                         <p class="details font-medium">Create stunning web experiences for high-profile clients. Must
                             have portfolio and experience with modern web design trends..</p>
                         <div class="flex gap-2 mt-2">
-                            <button 
-                                class="interview-btn text-green-600 border border-green-600 text-lg py-2 px-2 rounded cursor-pointer">INTERVIEW</button>
-                            <button 
-                                class="reject-btn text-red-600 border border-red-600 text-lg py-2 px-2 rounded cursor-pointer">REJECTED</button>
+                            <button class="interview-btn text-lg py-2 px-2 rounded cursor-pointer                                
+                            relative overflow-hidden  
+                            border border-green-500 text-green-600 font-semibold
+                            transition duration-300 
+                            before:absolute before:inset-0
+                          before:bg-green-100
+                            before:origin-left
+                            before:scale-x-0
+                            before:transition-transform
+                            before:duration-300
+                            hover:before:scale-x-100
+                            before:-z-10">INTERVIEW</button>
+                            <button class="reject-btn text-lg py-2 px-2 rounded cursor-pointer 
+                                
+                                relative overflow-hidden  
+                                border border-red-500 text-red-600 font-semibold
+                                transition duration-300 
+                                before:absolute before:inset-0
+                              before:bg-red-100
+                                before:origin-right
+                                before:scale-x-0
+                                before:transition-transform
+                                before:duration-300
+                                hover:before:scale-x-100
+                                before:-z-10">REJECTED</button>
                         </div>
-                    </div>
-                    <div>
-                        <button
-                            class="delete-btn bg-red-500 text-white font-bold py-2 px-4 rounded cursor-pointer mt-4 md:mt-0">Delete</button>
                     </div>
                 </div>
 
                 <!-- 3rd card -->
-                <div class="job-card flex flex-col md:flex-row justify-between border p-4 bg-white rounded-lg mt-4">
+                <div class="job-card border p-4 bg-white rounded-lg mt-4 hover:shadow-2xl 
+                hover:scale-[1.02] 
+                transition-all 
+                duration-300">
                     <div class="space-y-4">
-                        <h3 class="company-name text-2xl font-semibold">DataViz Solutions</h3>
+                        <div class="flex items-center justify-between gap-4">
+                            <h3 class="company-name text-2xl font-semibold">DataViz Solutions</h3>
+
+                            <div class="relative group inline-block">
+                                <button
+                                    class="delete-btn bg-gray-200 text-red-500 font-bold p-2 cursor-pointer mt-0 rounded-lg">
+                                    <i class="delete-btn fa-solid fa-trash 
+                                    transform 
+                                    hover:scale-150 
+                                    transition-transform 
+                                    duration-300 
+                                    ease-in-out"></i>
+                                </button>
+
+
+                                <span class="absolute top-0.5 right-2.5 -translate-x-1/2 
+                              bg-gray-200 text-red-600 font-bold text-xs
+                                px-2 py-2 rounded-xl
+                                opacity-0 group-hover:opacity-100
+                                transition-all duration-300
+                                whitespace-nowrap">
+
+                                    Delete Job
+
+                                    <!-- Tooltip Arrow -->
+                                    <span class="absolute left-full top-1/2 -translate-y-1/2 -translate-x-1/2
+                                    w-2.5 h-2.5 bg-gray-200
+                                    rotate-45"></span>
+
+                                </span>
+                            </div>
+
+                        </div>
                         <p class="designation font-light">Data Visualization Specialist</p>
                         <p class="salary font-light">Boston, MA • Full-time • $125,000 - $165,000</p>
                         <button class="status bg-gray-100 p-2 font-bold">Not Applied</button>
@@ -115,122 +265,404 @@
                             skills: D3.js, React, and strong analytical thinking.
                         </p>
                         <div class="flex gap-2 mt-2">
-                            <button
-                                class="interview-btn text-green-600 border border-green-600 text-lg py-2 px-2 rounded cursor-pointer">INTERVIEW</button>
-                            <button
-                                class="reject-btn text-red-600 border border-red-600 text-lg py-2 px-2 rounded cursor-pointer">REJECTED</button>
+                            <button class="interview-btn text-lg py-2 px-2 rounded cursor-pointer 
+                                
+                                relative overflow-hidden  
+                                border border-green-500 text-green-600 font-semibold
+                                transition duration-300 
+                                before:absolute before:inset-0
+                              before:bg-green-100
+                                before:origin-left               
+                                before:scale-x-0
+                                before:transition-transform
+                                before:duration-300
+                                hover:before:scale-x-100
+                                before:-z-10">INTERVIEW</button>
+                            <button class="reject-btn text-lg py-2 px-2 rounded cursor-pointer 
+                                
+                                relative overflow-hidden  
+                                border border-red-500 text-red-600 font-semibold
+                                transition duration-300 
+                                before:absolute before:inset-0
+                              before:bg-red-100
+                                before:origin-right
+                                before:scale-x-0
+                                before:transition-transform
+                                before:duration-300
+                                hover:before:scale-x-100
+                                before:-z-10">REJECTED</button>
                         </div>
-                    </div>
-                    <div>
-                        <button
-                            class="delete-btn bg-red-500 text-white font-bold py-2 px-4 rounded cursor-pointer mt-4 md:mt-0">Delete</button>
                     </div>
                 </div>
 
                 <!-- 4th card -->
-                <div class="job-card flex flex-col md:flex-row justify-between border p-4 bg-white rounded-lg mt-4">
+                <div class="job-card border p-4 bg-white rounded-lg mt-4 hover:shadow-2xl 
+                hover:scale-[1.02]
+                transition-all 
+                duration-300">
                     <div class="space-y-4">
-                        <h3 class="company-name text-2xl font-semibold">CloudFirst Inc</h3>
+                        <div class="flex items-center justify-between gap-4">
+                            <h3 class="company-name text-2xl font-semibold">CloudFirst Inc</h3>
+
+                            <div class="relative group inline-block">
+                                <button
+                                    class="delete-btn bg-gray-200 text-red-500 font-bold p-2 cursor-pointer mt-0 rounded-lg">
+                                    <i class="delete-btn fa-solid fa-trash 
+                                    transform 
+                                    hover:scale-150 
+                                    transition-transform 
+                                    duration-300 
+                                    ease-in-out"></i>
+                                </button>
+
+                                <span class="absolute top-0.5 right-2.5 -translate-x-1/2 
+                              bg-gray-200 text-red-600 font-bold text-xs
+                                px-2 py-2 rounded-xl
+                                opacity-0 group-hover:opacity-100
+                                transition-all duration-300
+                                whitespace-nowrap">
+
+                                    Delete Job
+
+                                    <!-- Tooltip Arrow -->
+                                    <span class="absolute left-full top-1/2 -translate-y-1/2 -translate-x-1/2
+                                    w-2.5 h-2.5 bg-gray-200
+                                    rotate-45"></span>
+                                </span>
+                            </div>
+                        </div>
                         <p class="designation font-light">Backend Developer</p>
                         <p class="salary font-light">Seattle, WA • Full-time • $140,000 - $190,000</p>
                         <button class="status bg-gray-100 p-2 font-bold">Not Applied</button>
-                        <p class="details font-medium">Design and maintain scalable backend systems using Python and
-                            AWS. Work with modern DevOps practices and cloud infrastructure.</p>
+                        <p class="details font-medium">Create beautiful and functional user interfaces for our suite of
+                            products. Strong design skills and frontend development expertise required.</p>
                         <div class="flex gap-2 mt-2">
-                            <button
-                                class="interview-btn text-green-600 border border-green-600 text-lg py-2 px-2 rounded cursor-pointer">INTERVIEW</button>
-                            <button
-                                class="reject-btn text-red-600 border border-red-600 text-lg py-2 px-2 rounded cursor-pointer">REJECTED</button>
+                            <button class="interview-btn text-lg py-2 px-2 rounded cursor-pointer 
+                                
+                                relative overflow-hidden  
+                                border border-green-500 text-green-600 font-semibold
+                                transition duration-300 
+                                before:absolute before:inset-0
+                              before:bg-green-100
+                                before:origin-left
+                                before:scale-x-0
+                                before:transition-transform
+                                before:duration-300
+                                hover:before:scale-x-100
+                                before:-z-10">INTERVIEW</button>
+                            <button class="reject-btn text-lg py-2 px-2 rounded cursor-pointer 
+                                
+                                relative overflow-hidden  
+                                border border-red-500 text-red-600 font-semibold
+                                transition duration-300 
+                                before:absolute before:inset-0
+                              before:bg-red-100
+                                before:origin-right
+                                before:scale-x-0
+                                before:transition-transform
+                                before:duration-300
+                                hover:before:scale-x-100
+                                before:-z-10">REJECTED</button>
                         </div>
-                    </div>
-                    <div>
-                        <button
-                            class="delete-btn bg-red-500 text-white font-bold py-2 px-4 rounded cursor-pointer mt-4 md:mt-0">Delete</button>
                     </div>
                 </div>
 
                 <!-- 5th card -->
-                <div class="job-card flex flex-col md:flex-row justify-between border p-4 bg-white rounded-lg mt-4">
+                <div class="job-card border p-4 bg-white rounded-lg mt-4 hover:shadow-2xl 
+                hover:scale-[1.02] 
+                transition-all 
+                duration-300">
                     <div class="space-y-4">
-                        <h3 class="company-name text-2xl font-semibold">Innovation Labs</h3>
+                        <div class="flex items-center justify-between gap-4">
+                            <h3 class="company-name text-2xl font-semibold">Innovation Labs</h3>
+
+                            <div class="relative group inline-block">
+                                <button
+                                    class="delete-btn bg-gray-200 text-red-500 font-bold p-2 cursor-pointer mt-0 rounded-lg">
+                                    <i class="delete-btn fa-solid fa-trash 
+                                    transform 
+                                    hover:scale-150 
+                                    transition-transform 
+                                    duration-300 
+                                    ease-in-out"></i>
+                                </button>
+
+
+                                <span class="absolute top-0.5 right-2.5 -translate-x-1/2 
+                              bg-gray-200 text-red-600 font-bold text-xs
+                                px-2 py-2 rounded-xl
+                                opacity-0 group-hover:opacity-100
+                                transition-all duration-300
+                                whitespace-nowrap">
+
+                                    Delete Job
+
+                                    <!-- Tooltip Arrow -->
+                                    <span class="absolute left-full top-1/2 -translate-y-1/2 -translate-x-1/2
+                                    w-2.5 h-2.5 bg-gray-200
+                                    rotate-45"></span>
+
+                                </span>
+                            </div>
+
+                        </div>
                         <p class="designation font-light">UI/UX Engineer</p>
                         <p class="salary font-light">Austin, TX • Full-time • $110,000 - $150,000</p>
                         <button class="status bg-gray-100 p-2 font-bold">Not Applied</button>
-                        <p class="details font-medium">Create beautiful and functional user interfaces for our suite of products. Strong design skills and frontend development expertise required.</p>
+                        <p class="details font-medium">Create beautiful and functional user interfaces for our suite of
+                            products. Strong design skills and frontend development expertise required.</p>
                         <div class="flex gap-2 mt-2">
-                            <button
-                                class="interview-btn text-green-600 border border-green-600 text-lg py-2 px-2 rounded cursor-pointer">INTERVIEW</button>
-                            <button
-                                class="reject-btn text-red-600 border border-red-600 text-lg py-2 px-2 rounded cursor-pointer">REJECTED</button>
+                            <button class="interview-btn text-lg py-2 px-2 rounded cursor-pointer 
+                                
+                                relative overflow-hidden  
+                                border border-green-500 text-green-600 font-semibold
+                                transition duration-300 
+                                before:absolute before:inset-0
+                              before:bg-green-100
+                                before:origin-left
+                                before:scale-x-0
+                                before:transition-transform
+                                before:duration-300
+                                hover:before:scale-x-100
+                                before:-z-10">INTERVIEW</button>
+                            <button class="reject-btn text-lg py-2 px-2 rounded cursor-pointer 
+                                
+                                relative overflow-hidden  
+                                border border-red-500 text-red-600 font-semibold
+                                transition duration-300 
+                                before:absolute before:inset-0
+                              before:bg-red-100
+                                before:origin-right
+                                before:scale-x-0
+                                before:transition-transform
+                                before:duration-300
+                                hover:before:scale-x-100
+                                before:-z-10">REJECTED</button>
                         </div>
-                    </div>
-                    <div>
-                        <button
-                            class="delete-btn bg-red-500 text-white font-bold py-2 px-4 rounded cursor-pointer mt-4 md:mt-0">Delete</button>
                     </div>
                 </div>
 
                 <!-- 6th card -->
-                <div class="job-card flex flex-col md:flex-row justify-between border p-4 bg-white rounded-lg mt-4">
+                <div class="job-card border p-4 bg-white rounded-lg mt-4 hover:shadow-2xl 
+                hover:scale-[1.02] 
+                transition-all 
+                duration-300">
                     <div class="space-y-4">
-                        <h3 class="company-name text-2xl font-semibold">MegaCorp Solutions</h3>
+                       <div class="flex items-center justify-between gap-4">
+                            <h3 class="company-name text-2xl font-semibold">MegaCorp Solutions</h3>
+
+                            <div class="relative group inline-block">
+                                <button
+                                    class="delete-btn bg-gray-200 text-red-500 font-bold p-2 cursor-pointer mt-0 rounded-lg">
+                                    <i class="delete-btn fa-solid fa-trash 
+                                    transform 
+                                    hover:scale-150 
+                                    transition-transform 
+                                    duration-300 
+                                    ease-in-out"></i>
+                                </button>
+
+
+                                <span class="absolute top-0.5 right-2.5 -translate-x-1/2 
+                              bg-gray-200 text-red-600 font-bold text-xs
+                                px-2 py-2 rounded-xl
+                                opacity-0 group-hover:opacity-100
+                                transition-all duration-300
+                                whitespace-nowrap">
+
+                                    Delete Job
+
+                                    <!-- Tooltip Arrow -->
+                                    <span class="absolute left-full top-1/2 -translate-y-1/2 -translate-x-1/2
+                                    w-2.5 h-2.5 bg-gray-200
+                                    rotate-45"></span>
+
+                                </span>
+                            </div>
+
+                        </div>
                         <p class="designation font-light">JavaScript Developer</p>
                         <p class="salary font-light">New York, NY • Full-time • $130,000 - $170,000</p>
                         <button class="status bg-gray-100 p-2 font-bold">Not Applied</button>
-                        <p class="details font-medium">Build enterprise applications with JavaScript and modern frameworks. We offer competitive compensation, health insurance, and professional development opportunities.</p>
+                        <p class="details font-medium">Build enterprise applications with JavaScript and modern
+                            frameworks. We offer competitive compensation, health insurance, and professional
+                            development opportunities.</p>
                         <div class="flex gap-2 mt-2">
-                            <button
-                                class="interview-btn text-green-600 border border-green-600 text-lg py-2 px-2 rounded cursor-pointer">INTERVIEW</button>
-                            <button
-                                class="reject-btn text-red-600 border border-red-600 text-lg py-2 px-2 rounded cursor-pointer">REJECTED</button>
+                            <button class="interview-btn text-lg py-2 px-2 rounded cursor-pointer 
+                                
+                                relative overflow-hidden  
+                                border border-green-500 text-green-600 font-semibold
+                                transition duration-300 
+                                before:absolute before:inset-0
+                              before:bg-green-100
+                                before:origin-left
+                                before:scale-x-0
+                                before:transition-transform
+                                before:duration-300
+                                hover:before:scale-x-100
+                                before:-z-10">INTERVIEW</button>
+                            <button class="reject-btn text-lg py-2 px-2 rounded cursor-pointer 
+                                
+                                relative overflow-hidden  
+                                border border-red-500 text-red-600 font-semibold
+                                transition duration-300 
+                                before:absolute before:inset-0
+                              before:bg-red-100
+                                before:origin-right
+                                before:scale-x-0
+                                before:transition-transform
+                                before:duration-300
+                                hover:before:scale-x-100
+                                before:-z-10">REJECTED</button>
                         </div>
-                    </div>
-                    <div>
-                        <button
-                            class="delete-btn bg-red-500 text-white font-bold py-2 px-4 rounded cursor-pointer mt-4 md:mt-0">Delete</button>
                     </div>
                 </div>
 
                 <!-- 7th card -->
-                <div class="job-card flex flex-col md:flex-row justify-between border p-4 bg-white rounded-lg mt-4">
+                <div class="job-card border p-4 bg-white rounded-lg mt-4 hover:shadow-2xl 
+                hover:scale-[1.02] 
+                transition-all 
+                duration-300">
                     <div class="space-y-4">
-                        <h3 class="company-name text-2xl font-semibold">StartupXYZ</h3>
+                        <div class="flex items-center justify-between gap-4">
+                            <h3 class="company-name text-2xl font-semibold">StartupXYZ</h3>
+
+                            <div class="relative group inline-block">
+                                <button
+                                    class="delete-btn bg-gray-200 text-red-500 font-bold p-2 cursor-pointer mt-0 rounded-lg">
+                                    <i class="delete-btn fa-solid fa-trash 
+                                    transform 
+                                    hover:scale-150 
+                                    transition-transform 
+                                    duration-300 
+                                    ease-in-out"></i>
+                                </button>
+
+
+                                <span class="absolute top-0.5 right-2.5 -translate-x-1/2 
+                              bg-gray-200 text-red-600 font-bold text-xs
+                                px-2 py-2 rounded-xl
+                                opacity-0 group-hover:opacity-100
+                                transition-all duration-300
+                                whitespace-nowrap">
+
+                                    Delete Job
+
+                                    <!-- Tooltip Arrow -->
+                                    <span class="absolute left-full top-1/2 -translate-y-1/2 -translate-x-1/2
+                                    w-2.5 h-2.5 bg-gray-200
+                                    rotate-45"></span>
+
+                                </span>
+                            </div>
+
+                        </div>
                         <p class="designation font-light">Full Stack Engineer</p>
                         <p class="salary font-light">New York, NY • Full-time • $120,000 - $160,000</p>
                         <button class="status bg-gray-100 p-2 font-bold">Not Applied</button>
-                        <p class="details font-medium">Join our fast-growing startup and work on our core platform. Experience with Node.js and React required. Great benefits and equity package included.</p>
+                        <p class="details font-medium">Join our fast-growing startup and work on our core platform.
+                            Experience with Node.js and React required. Great benefits and equity package included.</p>
                         <div class="flex gap-2 mt-2">
-                            <button
-                                class="interview-btn text-green-600 border border-green-600 text-lg py-2 px-2 rounded cursor-pointer">INTERVIEW</button>
-                            <button
-                                class="reject-btn text-red-600 border border-red-600 text-lg py-2 px-2 rounded cursor-pointer">REJECTED</button>
+                            <button class="interview-btn text-lg py-2 px-2 rounded cursor-pointer                               
+                                relative overflow-hidden  
+                                border border-green-500 text-green-600 font-semibold
+                                transition duration-300 
+                                before:absolute before:inset-0
+                              before:bg-green-100
+                                before:origin-left
+                                before:scale-x-0
+                                before:transition-transform
+                                before:duration-300
+                                hover:before:scale-x-100
+                                before:-z-10 ">INTERVIEW</button>
+
+                            <button class="reject-btn text-lg py-2 px-2 rounded cursor-pointer                               
+                                relative overflow-hidden  
+                                border border-red-500 text-red-600 font-semibold
+                                transition duration-300 
+                                before:absolute before:inset-0
+                              before:bg-red-100
+                                before:origin-right
+                                before:scale-x-0
+                                before:transition-transform
+                                before:duration-300
+                                hover:before:scale-x-100
+                                before:-z-10 ">REJECTED</button>
                         </div>
-                    </div>
-                    <div>
-                        <button
-                            class="delete-btn bg-red-500 text-white font-bold py-2 px-4 rounded cursor-pointer mt-4 md:mt-0">Delete</button>
                     </div>
                 </div>
 
                 <!-- 8th card -->
-                <div class="job-card flex flex-col md:flex-row justify-between border p-4 bg-white rounded-lg mt-4">
+                <div class="job-card border p-4 bg-white rounded-lg mt-4 hover:shadow-2xl 
+                hover:scale-[1.02]
+                transition-all 
+                duration-300">
                     <div class="space-y-4">
-                        <h3 class="company-name text-2xl font-semibold">CloudFirst Inc</h3>
-                        <p class="designation font-light">Backend Developer</p>
-                        <p class="salary font-light">Seattle, WA • Full-time • $140,000 - $190,000</p>
-                        <button class="status bg-gray-100 p-2 font-bold">Not Applied</button>
-                        <p class="details font-medium">Design and maintain scalable backend systems using Python and
-                            AWS. Work with modern DevOps practices and cloud infrastructure.</p>
-                        <div class="flex gap-2 mt-2">
-                            <button
-                                class="interview-btn text-green-600 border border-green-600 text-lg py-2 px-2 rounded cursor-pointer">INTERVIEW</button>
-                            <button
-                                class="reject-btn text-red-600 border border-red-600 text-lg py-2 px-2 rounded cursor-pointer">REJECTED</button>
+                        <div class="flex items-center justify-between gap-4">
+                            <h3 class="company-name text-2xl font-semibold">NeuByte Agency</h3>
+
+                            <div class="relative group inline-block">
+                                <button
+                                    class="delete-btn bg-gray-200 text-red-500 font-bold p-2 cursor-pointer mt-0 rounded-lg">
+                                    <i class="delete-btn fa-solid fa-trash 
+                                    transform 
+                                    hover:scale-150 
+                                    transition-transform 
+                                    duration-300 
+                                    ease-in-out"></i>
+                                </button>
+
+
+                                <span class="absolute top-0.5 right-2.5 -translate-x-1/2 
+                              bg-gray-200 text-red-600 font-bold text-xs
+                                px-2 py-2 rounded-xl
+                                opacity-0 group-hover:opacity-100
+                                transition-all duration-300
+                                whitespace-nowrap">
+
+                                    Delete Job
+
+                                    <!-- Tooltip Arrow -->
+                                    <span class="absolute left-full top-1/2 -translate-y-1/2 -translate-x-1/2
+                                    w-2.5 h-2.5 bg-gray-200
+                                    rotate-45"></span>
+
+                                </span>
+                            </div>
+
                         </div>
-                    </div>
-                    <div>
-                        <button
-                            class="delete-btn bg-red-500 text-white font-bold py-2 px-4 rounded cursor-pointer mt-4 md:mt-0">Delete</button>
+                        <p class="designation font-light">Junior Full Stack Developer</p>
+                        <p class="salary font-light">Portland, OR • Full-time • $65,000 – $90,000</p>
+                        <button class="status bg-gray-100 p-2 font-bold">Not Applied</button>
+                        <p class="details font-medium">Assist in developing REST APIs using Node.js and Express. Work with databases, debug backend issues, and collaborate with senior developers to improve system performance.</p>
+                        <div class="flex gap-2 mt-2">
+                            <button class="interview-btn text-lg py-2 px-2 rounded cursor-pointer 
+                                
+                                relative overflow-hidden  
+                                border border-green-500 text-green-600 font-semibold
+                                transition duration-300 
+                                before:absolute before:inset-0
+                              before:bg-green-100
+                                before:origin-left
+                                before:scale-x-0
+                                before:transition-transform
+                                before:duration-300
+                                hover:before:scale-x-100
+                                before:-z-10 ">INTERVIEW</button>
+                            <button class="reject-btn text-lg py-2 px-2 rounded cursor-pointer 
+                                
+                                relative overflow-hidden  
+                                border border-red-500 text-red-600 font-semibold
+                                transition duration-300 
+                                before:absolute before:inset-0
+                              before:bg-red-100
+                                before:origin-right
+                                before:scale-x-0
+                                before:transition-transform
+                                before:duration-300
+                                hover:before:scale-x-100
+                                before:-z-10 ">REJECTED</button>
+                        </div>
                     </div>
                 </div>
             </div>
